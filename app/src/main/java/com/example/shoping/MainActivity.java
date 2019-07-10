@@ -2,7 +2,6 @@ package com.example.shoping;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,17 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        if (!isTaskRoot()
-                && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)
-                && getIntent().getAction() != null
-                && getIntent().getAction().equals(Intent.ACTION_MAIN)) {
-
-            finish();
-            return;
-        }
 
 
             handler = new Handler();
@@ -61,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     handler.postDelayed(this, delay);
                 }
             }, delay);
+
 
 
             webview = findViewById(R.id.webview);
