@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Splashscreen">
+    tools:context=".Splashscreen"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_height="match_parent"
 
-        android:src="@drawable/logo"></ImageView>
+        android:src="@drawable/launchicon"></ImageView>
 
 </RelativeLayout>

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+            webview = findViewById(R.id.webview);
 
             handler = new Handler();
             final int delay = 1000;
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            webview = findViewById(R.id.webview);
             webview.setWebViewClient(new WebViewClient());
             webview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
