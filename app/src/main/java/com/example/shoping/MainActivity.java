@@ -11,11 +11,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     WebView webview;
     Handler handler;
+    ProgressBar progressBar;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
             webview = findViewById(R.id.webview);
+            relativeLayout = findViewById(R.id.mainactivityid);
 
             handler = new Handler();
             final int delay = 1000;
@@ -52,29 +57,29 @@ public class MainActivity extends AppCompatActivity {
                 alertDialog.show();
                 super.onReceivedError(webView, errorCode, description, failingUrl);
             }
+
+
         });
 
 
 
-            webview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
 
-            WebSettings webSettings = webview.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            webSettings.setSupportZoom(true);
-            webSettings.setLoadsImagesAutomatically(true);
-            webSettings.setAppCacheEnabled(true);
-            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setSupportZoom(true);
+        webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setAppCacheEnabled(true);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        webSettings.setSupportMultipleWindows(true);
 
 
 
-            webview.loadUrl("https://itsmykart.com");
+        webview.loadUrl("https://itsmykart.com");
 
 
     }
-
-
-
 
 
     @Override
