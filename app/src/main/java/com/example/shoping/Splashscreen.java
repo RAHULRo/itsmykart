@@ -3,14 +3,14 @@ package com.example.shoping;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 public class Splashscreen extends AppCompatActivity {
 
-    ImageView imageView;
-    Animation slidedown;
+    Animation zoomin;
+    CardView cardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +25,18 @@ public class Splashscreen extends AppCompatActivity {
             return;
         }
 
-        imageView = findViewById(R.id.logo);
+        cardView = findViewById(R.id.cardview);
 
-        slidedown = AnimationUtils.loadAnimation(this,R.anim.slide_down);
-        imageView.setAnimation(slidedown);
+        zoomin = AnimationUtils.loadAnimation(this,R.anim.zoomin);
+        cardView.setAnimation(zoomin);
+
+
 
         Thread thread = new Thread(){
             @Override
             public void run() {
                 try {
-                    sleep(4000);
+                    sleep(3500);
                     Intent intent  = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();

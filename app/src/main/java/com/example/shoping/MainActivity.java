@@ -2,7 +2,6 @@ package com.example.shoping;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -28,32 +27,35 @@ public class MainActivity extends AppCompatActivity {
             handler = new Handler();
             final int delay = 1000;
 
-            handler.postDelayed(new Runnable(){
-                public void run(){
-                    final AlertDialog.Builder builder  = new AlertDialog.Builder(MainActivity.this);
-                    AlertDialog alertDialog = builder.create();
-                    if(network()==false){
-                        webview.setBackgroundColor(Color.BLACK);
-                        builder.setMessage("No Internet Connection");
-                        builder.setCancelable(true);
-                        builder.setNegativeButton("Try Again", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                startActivity(getIntent());
-                            }
-                        });
-                        alertDialog = builder.create();
-                        alertDialog.show();
-                    }else{
-                        alertDialog.cancel();
-                    }
-                    handler.postDelayed(this, delay);
+
+
+
+        webview.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl) {
+                try {
+                    webView.stopLoading();
+                } catch (Exception e) {
                 }
-            }, delay);
+                webView.loadUrl("about:blank");
+                final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                alertDialog.setTitle("Error");
+                alertDialog.setMessage("Check your internet connection.");
+                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Try Again", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(network()==true)
+                        startActivity(getIntent());
+                        else onReceivedError(webView, errorCode, description, failingUrl);
+
+                    }
+                });
+
+                alertDialog.show();
+                super.onReceivedError(webView, errorCode, description, failingUrl);
+            }
+        });
 
 
 
-            webview.setWebViewClient(new WebViewClient());
             webview.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
 
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 
