@@ -3,14 +3,14 @@ package com.example.shoping;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 public class Splashscreen extends AppCompatActivity {
 
     Animation zoomin;
-    CardView cardView;
+    ImageView imageview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +25,10 @@ public class Splashscreen extends AppCompatActivity {
             return;
         }
 
-        cardView = findViewById(R.id.cardview);
+        imageview = findViewById(R.id.logo);
 
         zoomin = AnimationUtils.loadAnimation(this,R.anim.zoomin);
-        cardView.setAnimation(zoomin);
+        imageview.setAnimation(zoomin);
 
 
 

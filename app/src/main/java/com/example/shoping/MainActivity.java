@@ -41,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
                     webView.stopLoading();
                 } catch (Exception e) {
                 }
-                webView.loadUrl("about:blank");
+                String sHtmlTemplate = "<html><head></head><body><img src=\"file:///android_asset/logo.png\" " +
+                        "alt=\"Image\" style=\"display: block; margin-left: auto;margin-right: auto; padding-top:110px ;width: 100%;\"></body></html>";
+                WebView wb = new WebView(MainActivity.this);
+
+                wb.loadDataWithBaseURL(null, sHtmlTemplate, "text/html", "utf-8",null);
+                setContentView(wb);
+
                 final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
                 alertDialog.setTitle("Error");
                 alertDialog.setMessage("Check your internet connection.");
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
+                alertDialog.setCancelable(false);
                 alertDialog.show();
                 super.onReceivedError(webView, errorCode, description, failingUrl);
             }
